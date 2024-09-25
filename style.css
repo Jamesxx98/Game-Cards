@@ -68,3 +68,16 @@ body {
     font-size: 1em;
     color: #555;
 }
+
+.like-btn {
+  padding: 10px 20px;
+  background-color: #007BFF; /* Default blue color */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.like-btn.liked {
+  background-color: red; /* Green color when liked */
+}

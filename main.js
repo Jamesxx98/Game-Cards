@@ -13,16 +13,17 @@ let games = [
         imageUrl: 'https://i.pinimg.com/564x/3c/50/3a/3c503a732202c27ad7b5140a5acc6a6a.jpg',
         title: 'Chess',
         description: 'Chess is a two-player strategy board game where the aim is to move different types of playing pieces, each with a prescribed set of possible moves, around a chequered square board trying to capture the opponent\'s king piece.',
-    }                                                                                                                    
+    }                                                                                                                   
 ];
 
-function displaygames(item) {
+function displaygames(item, index) {
     return `
-    <div class="card">
+    <div class="card" id="card-${index}">
         <img src="${item.imageUrl}" alt="${item.title}" class="card-img">
         <div class="card-content">
             <h1 class="card-title">${item.title}</h1>
             <p class="card-description">${item.description}</p>
+            <button class="like-btn" id="like-btn-${index}">Like</button>
         </div>
     </div>
     `;
@@ -30,8 +31,25 @@ function displaygames(item) {
 
 let cardContainer = document.getElementById("card-container");
 
-let gamescards = games.map((item) => {
-    return displaygames(item);
+let gamescards = games.map((item, index) => {
+    return displaygames(item, index);
 }).join('');  // join is used to concatenate the HTML strings into one
 
 cardContainer.innerHTML = gamescards;
+
+// Add like button functionality
+games.forEach((game, index) => {
+    let likeBtn = document.getElementById(`like-btn-${index}`);
+    
+    likeBtn.addEventListener("click", function() {
+        // Toggle the liked class to change color
+        likeBtn.classList.toggle("liked");
+
+        // Optionally change the button text
+        if (likeBtn.classList.contains("liked")) {
+            likeBtn.textContent = "Liked";
+        } else {
+            likeBtn.textContent = "Like";
+        }
+    });
+});
